@@ -1,1 +1,4 @@
-# cs475_capstone
+# CS475 Capstone Project Description
+## by Brandon Knotek, Walid Muhammad, and Jack Wilder
+
+This is a code and documentation repository for our research project "Brain Waves as a Controller".  The goal of this project is to highlight the need and viability of enhanced accessibility with new technologies.  Our project demonstrates this through the creation of a unique video game that is controlled using just the brain waves recorded from the user. Without the need for any physical mobility, this project helps to enable a wider range of people to use technology like this.  Included files should provide meaningful processes to replicate brain control for other pieces of software using an Open BCI headset.  
