@@ -1,0 +1,63 @@
+:root {
+    --game-height: 620px;
+    --game-width: 800px;
+}
+
+body {
+    background: black;
+    font-family: sans-serif;
+    color: white;
+    margin: 0;
+    overflow: hidden;
+}
+
+canvas {
+    position: absolute;
+}
+
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 5px;
+}
+
+#ui {
+    font-size: 15pt;
+    text-align: center;
+}
+
+#game {
+    height: var(--game-height);
+    width: var(--game-width);
+    position: relative;
+    background-image: url('img/bg.png');
+}
+
+#defaultMsg {
+    z-index: 3;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: var(--game-width);
+    height: calc(var(--game-height) + 50pt);
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(5px);
+    font-size: 15pt;
+}
+
+#defaultMsg > p {
+    width: 50%;
+    text-align: center;
+}
+
+#cnv {
+    z-index: 2;
+}
+
+#pickups {
+    z-index: 1;
+}

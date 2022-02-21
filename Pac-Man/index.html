@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>MindGames - PacMan</title>
+        <meta name="description" content="Play Pac-Man!">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="pacman.css">
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="defaultMsg">
+                <p>This game was built using JavaScript modules; attempting to run it locally will generate a CORS error.</p>
+                <p>For local testing, please open this page using VS Code's Live Server feature.</p>
+            </div>
+            <div id="ui">
+                Score<br />
+                <span id="score">00</span>
+            </div>
+            <div id="game">
+                <canvas id="cnv"></canvas>
+                <canvas id="pickups"></canvas>
+            </div>
+            <img src="img/ghost.png" style="display:none;" id="ghost">
+        </div>
+        
+        <script type="module" src="js/pacman.js"></script>
+    </body>
+</html>
