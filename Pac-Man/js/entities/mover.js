@@ -47,6 +47,7 @@ export class Mover extends Entity {
         this.nextXMult = this.xMults[direction];
         this.nextYMult = this.yMults[direction];
 
+        // Set to true if the entity has moved to a new tile during an update
         this.changedTile = false;
     }
 

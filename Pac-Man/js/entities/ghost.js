@@ -97,7 +97,7 @@ export class Ghost extends Mover {
         this.resetting = true;
         this.baseState = GHOST_RESET_STATE;
         this.chooseDirection = this.resettingChooseDirection;
-        this.speed *= 2;
+        this.speed *= 3;
     }
 
     /**
@@ -107,12 +107,12 @@ export class Ghost extends Mover {
         this.resetting = false;
         this.baseState = this.direction;
         this.chooseDirection = this.defaultChooseDirection;
-        this.speed /= 2;
+        this.speed /= 3;
     }
 
     /**
      * Selects the next movement direction when the ghost is in either its default or vulnerable
-     * states. Prioritizes movement towards the given target coordinates
+     * states. Somewhat prioritizes movement towards the given target coordinates
      * 
      * @param {(string|number)[][]} map - Two-dimensional array representing the game arena
      * @param {number} targetX - The tile map x coordinate that the ghost should try to reach
@@ -183,7 +183,7 @@ export class Ghost extends Mover {
 
     /**
      * Selects the next movement direction when the ghost is in its reset state. Aggressively
-     * prioritizes movement towards the ghost's default x and y tile coordinates
+     * prioritizes movement towards the ghost's default tile coordinates
      * 
      * @param {(string|number)[][]} map - Two-dimensional array representing the game arena
      */
@@ -214,18 +214,6 @@ export class Ghost extends Mover {
                 // Left is a valid direction
                 choices.push(LEFT);
             }
-            // If the ghost is not moving left and there's no barrier to its right
-            if (this.direction != LEFT && map[this.tileY][this.tileX + 1] != 'b') {
-                // If moving right gets the ghost closer to its default coordinates, immediately
-                // queue the direction and skip the rest of the function
-                if (this.defaultX > this.tileX) {
-                    this.queueDirection(RIGHT);
-                    return;
-                }
-
-                // Right is a valid direction
-                choices.push(RIGHT);
-            }
             // If the ghost is not moving down and there's no barrier above it
             if (this.direction != DOWN && map[this.tileY - 1][this.tileX] != 'b') {
                 // If moving up gets the ghost closer to its default coordinates, immediately
@@ -237,6 +225,18 @@ export class Ghost extends Mover {
 
                 // Up is a valid direction
                 choices.push(UP);
+            }
+            // If the ghost is not moving left and there's no barrier to its right
+            if (this.direction != LEFT && map[this.tileY][this.tileX + 1] != 'b') {
+                // If moving right gets the ghost closer to its default coordinates, immediately
+                // queue the direction and skip the rest of the function
+                if (this.defaultX > this.tileX) {
+                    this.queueDirection(RIGHT);
+                    return;
+                }
+
+                // Right is a valid direction
+                choices.push(RIGHT);
             }
             // If the ghost is not moving up and there's no barrier below it
             if (this.direction != UP && map[this.tileY + 1][this.tileX] != 'b') {

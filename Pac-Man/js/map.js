@@ -3,7 +3,8 @@ const
     P = 'p', // Path (power pills)
     O = 'o', // Path (open)
     B = 'b', // Barriers
-    S = 's'; // Player start position
+    S = 's', // Player start position
+    G = 'g'; // Ghost start position
 
 /**
  * Represents the game arena as a two dimensional array of characters. Each character represents
@@ -22,10 +23,10 @@ export const map = [
     [B,C,B,B,B,B,B,B,C,B,B,B,C,C,C,C,C,C,B,B,B,C,C,C,C,C,C,B,B,B,C,B,B,B,B,B,B,C,B],
     [B,C,C,C,C,C,C,C,C,B,B,B,B,B,B,B,B,C,B,B,B,C,B,B,B,B,B,B,B,B,C,C,C,C,C,C,C,C,B],
     [B,B,B,B,B,B,B,B,C,B,B,B,B,B,B,B,B,O,B,B,B,O,B,B,B,B,B,B,B,B,C,B,B,B,B,B,B,B,B],
-    [B,B,B,B,B,B,B,B,C,C,C,C,C,O,O,O,O,O,O,O,O,O,O,O,O,O,C,P,C,C,C,B,B,B,B,B,B,B,B],
+    [B,B,B,B,B,B,B,B,C,C,C,C,C,O,O,O,O,O,O,G,O,O,O,O,O,O,C,P,C,C,C,B,B,B,B,B,B,B,B],
     [B,B,B,B,B,B,B,B,C,B,B,B,B,B,O,B,B,B,B,B,B,B,B,B,O,B,B,B,B,B,C,B,B,B,B,B,B,B,B],
-    [B,B,B,B,B,B,B,B,C,B,B,B,B,B,O,B,B,B,B,O,B,B,B,B,O,B,B,B,B,B,C,B,B,B,B,B,B,B,B],
-    [O,O,O,O,O,O,O,O,C,C,C,C,C,O,O,B,B,O,O,O,O,O,B,B,O,O,C,C,C,C,C,O,O,O,O,O,O,O,O],
+    [B,B,B,B,B,B,B,B,C,B,B,B,B,B,O,B,B,B,B,B,B,B,B,B,O,B,B,B,B,B,C,B,B,B,B,B,B,B,B],
+    [O,O,O,O,O,O,O,O,C,C,C,C,C,O,O,B,B,B,B,B,B,B,B,B,O,O,C,C,C,C,C,O,O,O,O,O,O,O,O],
     [B,B,B,B,B,B,B,B,C,B,B,B,B,B,O,B,B,B,B,B,B,B,B,B,O,B,B,B,B,B,C,B,B,B,B,B,B,B,B],
     [B,B,B,B,B,B,B,B,C,B,B,B,B,B,O,B,B,B,B,B,B,B,B,B,O,B,B,B,B,B,C,B,B,B,B,B,B,B,B],
     [B,B,B,B,B,B,B,B,C,B,B,B,B,B,O,O,O,O,O,O,O,O,O,O,O,B,B,B,B,B,C,B,B,B,B,B,B,B,B],

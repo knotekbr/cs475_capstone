@@ -11,6 +11,7 @@
     <body>
         <div id="wrapper">
             <div id="defaultMsg">
+                <!-- Default message removed automatically by JavaScript module -->
                 <p>This game was built using JavaScript modules; attempting to run it locally will generate a CORS error.</p>
                 <p>For local testing, please open this page using VS Code's Live Server feature.</p>
             </div>
@@ -19,9 +20,12 @@
                 <span id="score">00</span>
             </div>
             <div id="game">
+                <!-- Used for game entities that need to be re-rendered on each update -->
                 <canvas id="cnv"></canvas>
+                <!-- Used for entities that only need to be rendered once -->
                 <canvas id="pickups"></canvas>
             </div>
+            <!-- Ghost sprite sheet containing all ghost animation frames; not displayed -->
             <img src="img/ghost.png" style="display:none;" id="ghost">
         </div>
         

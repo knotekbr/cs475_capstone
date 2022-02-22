@@ -21,12 +21,13 @@ class PacMan {
      * Instantiates a new PacMan object
      */
     constructor() {
-        // Div element containing the canvas
+        // DOM elements not needed outside of the constructor
         const
             container = document.getElementById('game'),
             ghostImg = document.getElementById('ghost'),
             defaultMsg = document.getElementById('defaultMsg');
 
+        // Remove the default error message
         defaultMsg.remove();
 
         // Main canvas and associated drawing context for rendering dynamic entities
@@ -45,7 +46,7 @@ class PacMan {
 
         // Game entities
         this.pickups = [];
-        this.ghost = new Ghost(19, 11, ghostImg);
+        this.ghost = null;
         this.player = null;
 
         // Score variables
@@ -80,6 +81,10 @@ class PacMan {
                 // Else if the character at this position represents the player's starting position
                 else if (row[tileX] == 's') {
                     this.player = new Player(tileX, tileY);
+                }
+                // Else if the character at this position represents the ghost's starting position
+                else if (row[tileX] == 'g') {
+                    this.ghost = new Ghost(tileX, tileY, ghostImg);
                 }
             }
         }
@@ -177,7 +182,7 @@ class PacMan {
             this.updateScore(pickup.value);
 
             // If this pickup is a power pill, make the ghost vulnerable
-            if (pickup.type == 'p') {
+            if (pickup.type == 'p' && !this.ghost.resetting) {
                 this.ghost.startBlue();
             }
 
