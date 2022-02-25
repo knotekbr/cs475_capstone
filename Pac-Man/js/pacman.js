@@ -24,8 +24,7 @@ class PacMan {
         // DOM elements not needed outside of the constructor
         const
             container = document.getElementById('game'),
-            ghostImg = document.getElementById('ghost'),
-            defaultMsg = document.getElementById('defaultMsg');
+            defaultMsg = document.getElementById('default-msg');
 
         // Remove the default error message
         defaultMsg.remove();
@@ -44,6 +43,73 @@ class PacMan {
         this.pickupCnv.width = this.width;
         this.pickupCnv.height = this.height;
 
+        // Ghost sprite sheet element
+        this.ghostImg = document.getElementById('ghost');
+
+        // UI player score element
+        this.scoreDisplay = document.getElementById('score');
+
+        //UI arrow elements and associated direction constants
+        this.arrows = {
+            ArrowLeft: {
+                element: document.getElementById('left-arrow'),
+                direction: LEFT
+            },
+            ArrowRight: {
+                element: document.getElementById('right-arrow'),
+                direction: RIGHT
+            },
+            ArrowUp: {
+                element: document.getElementById('up-arrow'),
+                direction: UP
+            },
+            ArrowDown: {
+                element: document.getElementById('down-arrow'),
+                direction: DOWN
+            }
+        };
+        // Arrow element corresponding to last received direction input
+        this.lastArrow = this.arrows.ArrowUp.element;
+
+        // UI button elements
+        this.toggleButton = document.getElementById('toggle-pause');
+        this.newGameButton = document.getElementById('new-game');
+
+        // Game over elements
+        this.gameOverScreen = document.getElementById('game-over');
+        this.winLoseMessage = document.getElementById('win-lose');
+        this.finalScore = document.getElementById('final-score');
+
+        // Timestamp of the previously rendered frame
+        this.prevFrame = 0;
+        
+        // Event listeners
+        window.addEventListener('keydown', (e) => { this.handleInput(e); });
+        this.toggleButton.addEventListener('click', () => { this.togglePause(); });
+        this.newGameButton.addEventListener('click', () => { this.newGame(); });
+
+        // Initialize a new gameplay instance
+        this.init();
+    }
+
+    /**
+     * Sets all gameplay variables to default values
+     */
+    init() {
+        // Begin the game in a paused state
+        this.paused = true;
+
+        // Set UI elements to default states
+        this.toggleButton.innerHTML = 'Start Game';
+        this.toggleButton.disabled = false;
+        this.gameOverScreen.classList.remove('visible');
+        this.scoreDisplay.innerHTML = '00';
+        this.lastArrow.classList.remove('last-arrow');
+
+        // Clear all previous drawings from both canvases
+        this.ctx.clearRect(0, 0, this.width, this.height);
+        this.pickupCtx.clearRect(0, 0, this.width, this.height);
+
         // Game entities
         this.pickups = [];
         this.ghost = null;
@@ -52,17 +118,16 @@ class PacMan {
         // Score variables
         this.pickupsRemaining = 0;
         this.playerScore = 0;
-        this.scoreDisplay = document.getElementById('score');
 
-        // Timestamp of the previously rendered frame
-        this.prevFrame = 0;
-        
-        // Event listener for detecting input
-        window.addEventListener('keydown', (e) => { this.handleInput(e); })
+        // Local copy of logical game map
+        this.map = [];
+        for (let row = 0; row < MAP_HEIGHT; row++) {
+            this.map.push([...map[row]]);
+        }
 
         // For each row in the logical arena map
         for (let tileY = 0; tileY < MAP_HEIGHT; tileY++) {
-            let row = map[tileY];
+            let row = this.map[tileY];
 
             // For each column in the current row
             for (let tileX = 0; tileX < MAP_WIDTH; tileX++) {
@@ -84,10 +149,39 @@ class PacMan {
                 }
                 // Else if the character at this position represents the ghost's starting position
                 else if (row[tileX] == 'g') {
-                    this.ghost = new Ghost(tileX, tileY, ghostImg);
+                    this.ghost = new Ghost(tileX, tileY, this.ghostImg);
                 }
             }
         }
+
+        // Draw the game in its initial state
+        this.draw();
+    }
+
+    /**
+     * Toggles the paused state of the game
+     */
+    togglePause() {
+        this.paused = !this.paused;
+
+        if (this.paused) {
+            // Cancel request for next iteration of mainLoop()
+            cancelAnimationFrame(this.frameRequest);
+            this.toggleButton.innerHTML = 'Resume';
+        }
+        else {
+            // Start mainLoop()
+            this.start();
+            this.toggleButton.innerHTML = 'Pause';
+        }
+    }
+
+    /**
+     * Ends the current game and starts a new one
+     */
+    newGame() {
+        cancelAnimationFrame(this.frameRequest);
+        this.init();
     }
 
     /**
@@ -96,21 +190,15 @@ class PacMan {
      * @param {KeyboardEvent} e - The keyboard event being handled
      */
     handleInput(e) {
-        // Don't repeatedly handle a held key
-        if (!e.repeat) {
-            // Queue the direction corresponding to the pressed key
-            if (e.key == 'ArrowLeft') {
-                this.player.queueDirection(LEFT);
-            }
-            else if (e.key == 'ArrowRight') {
-                this.player.queueDirection(RIGHT);
-            }
-            else if (e.key == 'ArrowUp') {
-                this.player.queueDirection(UP);
-            }
-            else if (e.key == 'ArrowDown') {
-                this.player.queueDirection(DOWN);
-            }
+        // Only handle arrow keys that aren't being held down
+        if (!e.repeat && e.key in this.arrows) {
+            // Update UI elements to visually indicate the received direction
+            this.lastArrow.classList.remove('last-arrow');
+            this.lastArrow = this.arrows[e.key].element;
+            this.lastArrow.classList.add('last-arrow');
+
+            // Queue the received direction
+            this.player.queueDirection(this.arrows[e.key].direction);
         }  
     }
 
@@ -124,12 +212,20 @@ class PacMan {
         this.scoreDisplay.innerHTML = this.playerScore;
     }
 
-    winGame() {
-        // To-Do
-    }
+    /**
+     * Displays the game over screen
+     * 
+     * @param {string} message - Text to display in the form 'You <message>'
+     */
+    gameOver(message) {
+        // Pause the game and disable the 'Resume' button
+        this.toggleButton.disabled = true;
+        this.togglePause();
 
-    loseGame() {
-        // To-Do
+        // Customize the game over screen and display it
+        this.winLoseMessage.innerHTML = message;
+        this.finalScore.innerHTML = this.playerScore;
+        this.gameOverScreen.classList.add('visible');
     }
 
     /**
@@ -157,7 +253,9 @@ class PacMan {
         this.draw();
 
         // Request an animation frame for the next iteration of the game loop
-        requestAnimationFrame(() => { this.mainLoop(); });
+        if (!this.paused) {
+            this.frameRequest = requestAnimationFrame(() => { this.mainLoop(); });
+        }
     }
 
     /**
@@ -169,19 +267,20 @@ class PacMan {
         let tileContents;
 
         // Call individual entity update methods
-        this.player.update(map, elapsed);
-        this.ghost.update(map, elapsed, this.player.tileX, this.player.tileY);
+        this.player.update(this.map, elapsed);
+        this.ghost.update(this.map, elapsed, this.player.tileX, this.player.tileY);
 
         // Check if the player's current map tile contains a number (corresponding to a pickup in
         // the pickup array)
-        tileContents = map[this.player.tileY][this.player.tileX];
+        tileContents = this.map[this.player.tileY][this.player.tileX];
         if (typeof tileContents === 'number') {
             let pickup = this.pickups[tileContents];
 
             // Update the player's score
             this.updateScore(pickup.value);
 
-            // If this pickup is a power pill, make the ghost vulnerable
+            // If this pickup is a power pill, and the ghost is not resetting, make the ghost
+            // vulnerable
             if (pickup.type == 'p' && !this.ghost.resetting) {
                 this.ghost.startBlue();
             }
@@ -192,11 +291,11 @@ class PacMan {
             this.pickupsRemaining--;
 
             // Remove the pickup reference from the tile map
-            map[this.player.tileY][this.player.tileX] = 'o';
+            this.map[this.player.tileY][this.player.tileX] = 'o';
 
             // The player has won the game when there are no pickups remaining
             if (this.pickupsRemaining <= 0) {
-                this.winGame();
+                this.gameOver('won!');
             }
         }
 
@@ -210,7 +309,7 @@ class PacMan {
             // If the player encounters a ghost that is neither blue nor resetting, they lose the
             // game
             else if (!this.ghost.blue && !this.ghost.resetting) {
-                this.loseGame();
+                this.gameOver('lost...');
             }
         }
     }
@@ -230,4 +329,3 @@ class PacMan {
 }
 
 const test = new PacMan();
-test.start();
