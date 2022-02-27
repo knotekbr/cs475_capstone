@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>MindGames - PacMan</title>
+        <meta name="description" content="Play Pac-Man!">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="pacman.css">
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="default-msg">
+                <!-- Default message removed automatically by JavaScript module -->
+                <p>This game was built using JavaScript modules; attempting to run it locally will generate a CORS error.</p>
+                <p>For local testing, please open this page using VS Code's Live Server feature.</p>
+            </div>
+            <div id="game-over">
+                <div id="win-lose-msg">
+                    You <span id="win-lose"></span>
+                </div>
+                <div id="final-score-msg">
+                    Your final score was <span id="final-score"></span>
+                </div>
+            </div>
+            <div id="ui">
+                Score<br />
+                <span id="score">00</span>
+            </div>
+            <div id="game">
+                <div id="left-ui">
+                    Last Direction Received:<br /><br />
+
+                    <div class="arrow up" id="up-arrow"></div><br />
+                    <div class="arrow left" id="left-arrow"></div>
+                    <div class="circle"></div>
+                    <div class="arrow right" id="right-arrow"></div><br />
+                    <div class="arrow down" id="down-arrow"></div><br /><br />
+
+                    <button id="toggle-pause">Start Game</button><br />
+                    <button id="new-game">New Game</button>
+                </div>
+                <!-- Used for game entities that need to be re-rendered on each update -->
+                <canvas id="cnv"></canvas>
+                <!-- Used for entities that only need to be rendered once -->
+                <canvas id="pickups"></canvas>
+            </div>
+            <!-- Ghost sprite sheet containing all ghost animation frames; not displayed -->
+            <img src="img/ghost.png" style="display:none;" id="ghost">
+        </div>
+        
+        <script type="module" src="js/pacman.js"></script>
+    </body>
+</html>
