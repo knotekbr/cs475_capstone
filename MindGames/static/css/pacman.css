@@ -58,7 +58,7 @@ button:disabled {
     height: var(--game-height);
     width: var(--game-width);
     position: relative;
-    background-image: url('img/bg.png');
+    background-image: url('../img/bg.png');
 }
 
 #default-msg, #game-over {
