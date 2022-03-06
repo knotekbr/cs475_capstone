@@ -6,7 +6,7 @@
         <title>MindGames - PacMan</title>
         <meta name="description" content="Play Pac-Man!">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="pacman.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/pacman.css') }}">
     </head>
     <body>
         <div id="wrapper">
@@ -46,9 +46,16 @@
                 <canvas id="pickups"></canvas>
             </div>
             <!-- Ghost sprite sheet containing all ghost animation frames; not displayed -->
-            <img src="img/ghost.png" style="display:none;" id="ghost">
+            <img src="{{ url_for('static', filename='img/ghost.png') }}" style="display:none;" id="ghost">
         </div>
         
-        <script type="module" src="js/pacman.js"></script>
+        <script type="module" src="{{ url_for('static', filename='js/pacman.js') }}"></script>
+        <script>
+            const sock = new WebSocket('ws://' + location.host + '/obci');
+
+            sock.addEventListener('message', e => console.log('Received: ' + e.data));
+
+            sock.addEventListener('open', () => sock.send('Test'));
+        </script>
     </body>
 </html>

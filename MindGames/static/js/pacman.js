@@ -93,7 +93,7 @@ class PacMan {
     }
 
     /**
-     * Sets all gameplay variables to default values
+     * Sets all game entities, elements, and variables to their default states
      */
     init() {
         // Begin the game in a paused state
