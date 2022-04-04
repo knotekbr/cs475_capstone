@@ -50,12 +50,5 @@
         </div>
         
         <script type="module" src="{{ url_for('static', filename='js/pacman.js') }}"></script>
-        <script>
-            const sock = new WebSocket('ws://' + location.host + '/obci');
-
-            sock.addEventListener('message', e => console.log('Received: ' + e.data));
-
-            sock.addEventListener('open', () => sock.send('Test'));
-        </script>
     </body>
 </html>

@@ -82,11 +82,15 @@ class PacMan {
 
         // Timestamp of the previously rendered frame
         this.prevFrame = 0;
+
+        // WebSocket connection for receiving commands from the server
+        this.sock = new WebSocket('ws://' + location.host + '/obci');
         
         // Event listeners
         window.addEventListener('keydown', (e) => { this.handleInput(e); });
         this.toggleButton.addEventListener('click', () => { this.togglePause(); });
         this.newGameButton.addEventListener('click', () => { this.newGame(); });
+        this.sock.addEventListener('message', (e) => { this.handleInput({repeat: false, key: e.data}) });
 
         // Initialize a new gameplay instance
         this.init();
@@ -328,4 +332,4 @@ class PacMan {
 
 }
 
-const test = new PacMan();
+const game = new PacMan();
