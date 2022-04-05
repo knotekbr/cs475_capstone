@@ -1,22 +1,22 @@
 <?xml version='1.0' encoding='utf-8'?>
 <scheme description="This pipeline is used to classify four types of motion (and a neutral state) in order to translate a user's physical commands into game inputs. The pipeline can be divided into 4 sections:&#10;&#10;1. Data Acquisition&#10;&#10;2. Data Preprocessing&#10;&#10;3. Classification&#10;&#10;4. Output" title="MindGames Motor Classification" version="2.0">
 	<nodes>
-		<node id="0" name="Assign Target Values" position="(448.0, 207.0)" project_name="NeuroPype" qualified_name="widgets.machine_learning.owassigntargets.OWAssignTargets" title="Assign Targets" uuid="bdc2ee3d-2a1e-41fd-a286-97cee178184c" version="1.0.1" />
-		<node id="1" name="Segmentation" position="(545.0, 359.0)" project_name="NeuroPype" qualified_name="widgets.formatting.owsegmentation.OWSegmentation" title="Segmentation" uuid="726a3006-2ee6-45c0-be4d-d40e31fd345a" version="1.0.2" />
-		<node id="2" name="Select Range" position="(546.0, 207.0)" project_name="NeuroPype" qualified_name="widgets.tensor_math.owselectrange.OWSelectRange" title="Select Range" uuid="9adb8c3b-871e-4b05-9ee7-df2ad167801b" version="1.1.0" />
-		<node id="3" name="FIR Filter" position="(450.0, 359.0)" project_name="NeuroPype" qualified_name="widgets.signal_processing.owfirfilter.OWFIRFilter" title="FIR Filter" uuid="ce44456d-97b5-4f1b-8a8e-b59199738cc4" version="1.1.0" />
-		<node id="4" name="LSL Input" position="(33.0, 215.0)" project_name="NeuroPype" qualified_name="widgets.network.owlslinput.OWLSLInput" title="LSL Input" uuid="f9185ca7-ff9e-409e-93dc-0d0c7bee102f" version="1.5.1" />
-		<node id="5" name="Dejitter Timestamps" position="(132.0, 215.0)" project_name="NeuroPype" qualified_name="widgets.utilities.owdejittertimestamps.OWDejitterTimestamps" title="Dejitter Timestamps" uuid="98219cad-2ef1-48d6-bc37-6d752ac4b5a2" version="1.0.0" />
-		<node id="6" name="Streaming Bar Plot" position="(1133.0, 468.0)" project_name="NeuroPype" qualified_name="widgets.visualization.owbarplot.OWBarPlot" title="Streaming Bar Plot" uuid="ba5d2e7e-d45e-45a7-8a16-b7f1be5af7f3" version="1.0.3" />
-		<node id="7" name="Override Axis" position="(1034.0, 468.0)" project_name="NeuroPype" qualified_name="widgets.neural.owoverrideaxis.OWOverrideAxis" title="Override Axis" uuid="64d59f7c-5826-415f-843a-f2b42570e18f" version="1.4.2" />
-		<node id="8" name="Inject Calibration Data" position="(345.0, 207.0)" project_name="NeuroPype" qualified_name="widgets.machine_learning.owinjectcalibrationdata.OWInjectCalibrationData" title="Inject Calibration Data" uuid="738de9bc-5fe4-47b3-b878-e46324b75c89" version="1.0.0" />
-		<node id="9" name="Import XDF" position="(32.0, 119.0)" project_name="NeuroPype" qualified_name="widgets.file_system.owimportxdf.OWImportXDF" title="Import XDF" uuid="d21cd724-a3dd-4d2d-bc54-ab9509c9139c" version="1.2.1" />
-		<node id="10" name="Moving Average" position="(920.0, 367.0)" project_name="NeuroPype" qualified_name="widgets.signal_processing.owmovingaverage.OWMovingAverage" title="Moving Average" uuid="64ee0e1b-739b-401e-ae58-7a87b650503a" version="1.1.0" />
-		<node id="11" name="Source Power Comodulation" position="(452.0, 501.0)" project_name="NeuroPype" qualified_name="widgets.neural.owsourcepowercomodulation.OWSourcePowerComodulation" title="Source Power Comodulation" uuid="908d1879-f9aa-447a-b21e-6c117733651b" version="1.0.0" />
-		<node id="12" name="Variance" position="(554.0, 501.0)" project_name="NeuroPype" qualified_name="widgets.statistics.owvariance.OWVariance" title="Variance" uuid="873b3896-4758-45fe-8a23-565c02234b8e" version="1.0.0" />
-		<node id="13" name="Logistic Regression" position="(812.0, 367.0)" project_name="NeuroPype" qualified_name="widgets.machine_learning.owlogisticregression.OWLogisticRegression" title="Logistic Regression" uuid="b05fddaf-8808-4e0d-8734-24348cf4c7b9" version="1.1.0" />
-		<node id="14" name="Logarithm" position="(651.0, 501.0)" project_name="NeuroPype" qualified_name="widgets.elementwise_math.owlogarithm.OWLogarithm" title="Logarithm" uuid="b31945e2-6ae6-4fee-86c6-aaf0d42a3df7" version="1.0.0" />
-		<node id="15" name="LSL Output" position="(1027.0, 359.0)" project_name="NeuroPype" qualified_name="widgets.network.owlsloutput.OWLSLOutput" title="LSL Output" uuid="dc2d8dc0-05c9-4a72-940f-8ebe285bfff5" version="1.4.2" />
+		<node id="0" name="Assign Target Values" position="(608.0, 189.0)" project_name="NeuroPype" qualified_name="widgets.machine_learning.owassigntargets.OWAssignTargets" title="Assign Targets" uuid="e3d50ddb-4a87-46bf-8930-b39a346977d0" version="1.0.1" />
+		<node id="1" name="Segmentation" position="(705.0, 341.0)" project_name="NeuroPype" qualified_name="widgets.formatting.owsegmentation.OWSegmentation" title="Segmentation" uuid="299ffb67-6577-4cf8-b69c-9c3792762696" version="1.0.2" />
+		<node id="2" name="Select Range" position="(706.0, 189.0)" project_name="NeuroPype" qualified_name="widgets.tensor_math.owselectrange.OWSelectRange" title="Select Range" uuid="9056d0d2-2b81-4d95-83c7-ca80e29aac26" version="1.1.0" />
+		<node id="3" name="FIR Filter" position="(610.0, 341.0)" project_name="NeuroPype" qualified_name="widgets.signal_processing.owfirfilter.OWFIRFilter" title="FIR Filter" uuid="49f0317f-9b69-4693-84ed-67e6c0fdc960" version="1.1.0" />
+		<node id="4" name="LSL Input" position="(193.0, 197.0)" project_name="NeuroPype" qualified_name="widgets.network.owlslinput.OWLSLInput" title="LSL Input" uuid="0c60134c-99ae-40a5-bcf8-9398d102f1d5" version="1.5.1" />
+		<node id="5" name="Dejitter Timestamps" position="(292.0, 197.0)" project_name="NeuroPype" qualified_name="widgets.utilities.owdejittertimestamps.OWDejitterTimestamps" title="Dejitter Timestamps" uuid="71dcf767-d21b-4019-8a01-7a93fca89510" version="1.0.0" />
+		<node id="6" name="Streaming Bar Plot" position="(1293.0, 450.0)" project_name="NeuroPype" qualified_name="widgets.visualization.owbarplot.OWBarPlot" title="Streaming Bar Plot" uuid="f7b56644-88f7-44e1-baf9-943c73c44a1a" version="1.0.3" />
+		<node id="7" name="Override Axis" position="(1194.0, 450.0)" project_name="NeuroPype" qualified_name="widgets.neural.owoverrideaxis.OWOverrideAxis" title="Override Axis" uuid="5d7eb389-e8c4-41af-94f7-437db59a3fc8" version="1.4.2" />
+		<node id="8" name="Inject Calibration Data" position="(505.0, 189.0)" project_name="NeuroPype" qualified_name="widgets.machine_learning.owinjectcalibrationdata.OWInjectCalibrationData" title="Inject Calibration Data" uuid="b1d80e40-c47e-47fa-822b-c001364eb121" version="1.0.0" />
+		<node id="9" name="Import XDF" position="(192.0, 101.0)" project_name="NeuroPype" qualified_name="widgets.file_system.owimportxdf.OWImportXDF" title="Import XDF" uuid="a5af1d63-8a7c-47de-a200-9864e71f3f95" version="1.2.1" />
+		<node id="10" name="Moving Average" position="(1080.0, 349.0)" project_name="NeuroPype" qualified_name="widgets.signal_processing.owmovingaverage.OWMovingAverage" title="Moving Average" uuid="a4e4b396-b762-4e9c-9a36-6361a29e479a" version="1.1.0" />
+		<node id="11" name="Source Power Comodulation" position="(612.0, 483.0)" project_name="NeuroPype" qualified_name="widgets.neural.owsourcepowercomodulation.OWSourcePowerComodulation" title="Source Power Comodulation" uuid="dfeb9f8c-32a4-43e8-9474-4ae79dae0dc3" version="1.0.0" />
+		<node id="12" name="Variance" position="(714.0, 483.0)" project_name="NeuroPype" qualified_name="widgets.statistics.owvariance.OWVariance" title="Variance" uuid="dcf65f23-4b51-4154-88a9-0179aaae120d" version="1.0.0" />
+		<node id="13" name="Logistic Regression" position="(972.0, 349.0)" project_name="NeuroPype" qualified_name="widgets.machine_learning.owlogisticregression.OWLogisticRegression" title="Logistic Regression" uuid="80bf78c3-89c8-4e90-a0ff-650186f3c7e9" version="1.1.0" />
+		<node id="14" name="Logarithm" position="(811.0, 483.0)" project_name="NeuroPype" qualified_name="widgets.elementwise_math.owlogarithm.OWLogarithm" title="Logarithm" uuid="d275596e-4d62-42d4-80ee-6e6f657cfe6f" version="1.0.0" />
+		<node id="15" name="LSL Output" position="(1187.0, 341.0)" project_name="NeuroPype" qualified_name="widgets.network.owlsloutput.OWLSLOutput" title="LSL Output" uuid="d818b663-4f73-448a-b0e1-5fadcd62c633" version="1.4.2" />
 	</nodes>
 	<links>
 		<link enabled="true" id="0" sink_channel="Data" sink_node_id="2" source_channel="Data" source_node_id="0" />
@@ -347,7 +347,7 @@ aW1lc3RhbXBzcSOIWBYAAAB1c2VfbnVtcHlfb3B0aW1pemF0aW9ucSSJdS4=
                     "value": false
                 }
             },
-            "uuid": "bdc2ee3d-2a1e-41fd-a286-97cee178184c"
+            "uuid": "e3d50ddb-4a87-46bf-8930-b39a346977d0"
         },
         "node10": {
             "class": "ImportXDF",
@@ -434,7 +434,7 @@ aW1lc3RhbXBzcSOIWBYAAAB1c2VfbnVtcHlfb3B0aW1pemF0aW9ucSSJdS4=
                     "value": false
                 }
             },
-            "uuid": "d21cd724-a3dd-4d2d-bc54-ab9509c9139c"
+            "uuid": "a5af1d63-8a7c-47de-a200-9864e71f3f95"
         },
         "node11": {
             "class": "MovingAverage",
@@ -476,7 +476,7 @@ aW1lc3RhbXBzcSOIWBYAAAB1c2VfbnVtcHlfb3B0aW1pemF0aW9ucSSJdS4=
                     "value": false
                 }
             },
-            "uuid": "64ee0e1b-739b-401e-ae58-7a87b650503a"
+            "uuid": "a4e4b396-b762-4e9c-9a36-6361a29e479a"
         },
         "node12": {
             "class": "SourcePowerComodulation",
@@ -513,7 +513,7 @@ aW1lc3RhbXBzcSOIWBYAAAB1c2VfbnVtcHlfb3B0aW1pemF0aW9ucSSJdS4=
                     "value": "TargetValue"
                 }
             },
-            "uuid": "908d1879-f9aa-447a-b21e-6c117733651b"
+            "uuid": "dfeb9f8c-32a4-43e8-9474-4ae79dae0dc3"
         },
         "node13": {
             "class": "Variance",
@@ -545,7 +545,7 @@ aW1lc3RhbXBzcSOIWBYAAAB1c2VfbnVtcHlfb3B0aW1pemF0aW9ucSSJdS4=
                     "value": false
                 }
             },
-            "uuid": "873b3896-4758-45fe-8a23-565c02234b8e"
+            "uuid": "dcf65f23-4b51-4154-88a9-0179aaae120d"
         },
         "node14": {
             "class": "LogisticRegression",
@@ -673,7 +673,7 @@ aW1lc3RhbXBzcSOIWBYAAAB1c2VfbnVtcHlfb3B0aW1pemF0aW9ucSSJdS4=
                     "value": 0
                 }
             },
-            "uuid": "b05fddaf-8808-4e0d-8734-24348cf4c7b9"
+            "uuid": "80bf78c3-89c8-4e90-a0ff-650186f3c7e9"
         },
         "node15": {
             "class": "Logarithm",
@@ -695,7 +695,7 @@ aW1lc3RhbXBzcSOIWBYAAAB1c2VfbnVtcHlfb3B0aW1pemF0aW9ucSSJdS4=
                     "value": false
                 }
             },
-            "uuid": "b31945e2-6ae6-4fee-86c6-aaf0d42a3df7"
+            "uuid": "d275596e-4d62-42d4-80ee-6e6f657cfe6f"
         },
         "node16": {
             "class": "LSLOutput",
@@ -802,7 +802,7 @@ aW1lc3RhbXBzcSOIWBYAAAB1c2VfbnVtcHlfb3B0aW1pemF0aW9ucSSJdS4=
                     "value": false
                 }
             },
-            "uuid": "dc2d8dc0-05c9-4a72-940f-8ebe285bfff5"
+            "uuid": "d818b663-4f73-448a-b0e1-5fadcd62c633"
         },
         "node2": {
             "class": "Segmentation",
@@ -857,7 +857,7 @@ aW1lc3RhbXBzcSOIWBYAAAB1c2VfbnVtcHlfb3B0aW1pemF0aW9ucSSJdS4=
                     "value": false
                 }
             },
-            "uuid": "726a3006-2ee6-45c0-be4d-d40e31fd345a"
+            "uuid": "299ffb67-6577-4cf8-b69c-9c3792762696"
         },
         "node3": {
             "class": "SelectRange",
@@ -899,7 +899,7 @@ aW1lc3RhbXBzcSOIWBYAAAB1c2VfbnVtcHlfb3B0aW1pemF0aW9ucSSJdS4=
                     "value": "indices"
                 }
             },
-            "uuid": "9adb8c3b-871e-4b05-9ee7-df2ad167801b"
+            "uuid": "9056d0d2-2b81-4d95-83c7-ca80e29aac26"
         },
         "node4": {
             "class": "FIRFilter",
@@ -966,7 +966,7 @@ aW1lc3RhbXBzcSOIWBYAAAB1c2VfbnVtcHlfb3B0aW1pemF0aW9ucSSJdS4=
                     "value": 50.0
                 }
             },
-            "uuid": "ce44456d-97b5-4f1b-8a8e-b59199738cc4"
+            "uuid": "49f0317f-9b69-4693-84ed-67e6c0fdc960"
         },
         "node5": {
             "class": "LSLInput",
@@ -1073,7 +1073,7 @@ aW1lc3RhbXBzcSOIWBYAAAB1c2VfbnVtcHlfb3B0aW1pemF0aW9ucSSJdS4=
                     "value": false
                 }
             },
-            "uuid": "f9185ca7-ff9e-409e-93dc-0d0c7bee102f"
+            "uuid": "0c60134c-99ae-40a5-bcf8-9398d102f1d5"
         },
         "node6": {
             "class": "DejitterTimestamps",
@@ -1110,7 +1110,7 @@ aW1lc3RhbXBzcSOIWBYAAAB1c2VfbnVtcHlfb3B0aW1pemF0aW9ucSSJdS4=
                     "value": -1
                 }
             },
-            "uuid": "98219cad-2ef1-48d6-bc37-6d752ac4b5a2"
+            "uuid": "71dcf767-d21b-4019-8a01-7a93fca89510"
         },
         "node7": {
             "class": "BarPlot",
@@ -1215,7 +1215,7 @@ aW1lc3RhbXBzcSOIWBYAAAB1c2VfbnVtcHlfb3B0aW1pemF0aW9ucSSJdS4=
                     ]
                 }
             },
-            "uuid": "ba5d2e7e-d45e-45a7-8a16-b7f1be5af7f3"
+            "uuid": "f7b56644-88f7-44e1-baf9-943c73c44a1a"
         },
         "node8": {
             "class": "OverrideAxis",
@@ -1303,7 +1303,7 @@ aW1lc3RhbXBzcSOIWBYAAAB1c2VfbnVtcHlfb3B0aW1pemF0aW9ucSSJdS4=
                     "value": 0
                 }
             },
-            "uuid": "64d59f7c-5826-415f-843a-f2b42570e18f"
+            "uuid": "5d7eb389-e8c4-41af-94f7-437db59a3fc8"
         },
         "node9": {
             "class": "InjectCalibrationData",
@@ -1325,7 +1325,7 @@ aW1lc3RhbXBzcSOIWBYAAAB1c2VfbnVtcHlfb3B0aW1pemF0aW9ucSSJdS4=
                     "value": false
                 }
             },
-            "uuid": "738de9bc-5fe4-47b3-b878-e46324b75c89"
+            "uuid": "b1d80e40-c47e-47fa-822b-c001364eb121"
         }
     },
     "version": 1.1
