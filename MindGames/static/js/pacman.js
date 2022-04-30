@@ -66,6 +66,10 @@ class PacMan {
             ArrowDown: {
                 element: document.getElementById('down-arrow'),
                 direction: DOWN
+            },
+            Neutral: {
+                element: document.getElementById('center-circle'),
+                direction: null
             }
         };
         // Arrow element corresponding to last received direction input
@@ -74,6 +78,7 @@ class PacMan {
         // UI button elements
         this.toggleButton = document.getElementById('toggle-pause');
         this.newGameButton = document.getElementById('new-game');
+        this.demoModeButton = document.getElementById('demo-mode');
 
         // Game over elements
         this.gameOverScreen = document.getElementById('game-over');
@@ -83,6 +88,9 @@ class PacMan {
         // Timestamp of the previously rendered frame
         this.prevFrame = 0;
 
+        // Demo mode flag
+        this.demoMode = false;
+
         // WebSocket connection for receiving commands from the server
         this.sock = new WebSocket('ws://' + location.host + '/obci');
         
@@ -90,6 +98,7 @@ class PacMan {
         window.addEventListener('keydown', (e) => { this.handleInput(e); });
         this.toggleButton.addEventListener('click', () => { this.togglePause(); });
         this.newGameButton.addEventListener('click', () => { this.newGame(); });
+        this.demoModeButton.addEventListener('click', () => { this.toggleDemo(); })
         this.sock.addEventListener('message', (e) => { this.handleInput({repeat: false, key: e.data}) });
 
         // Initialize a new gameplay instance
@@ -181,6 +190,22 @@ class PacMan {
     }
 
     /**
+     * Toggles the demo state of the game. In demo mode, touching the ghost does not result in a
+     * game over
+     */
+    toggleDemo() {
+        this.demoMode = !this.demoMode;
+        this.ghost.demoMode = this.demoMode;
+
+        if (this.demoMode) {
+            this.demoModeButton.innerHTML = 'Normal Mode';
+        }
+        else {
+            this.demoModeButton.innerHTML = 'Demo Mode';
+        }
+    }
+
+    /**
      * Ends the current game and starts a new one
      */
     newGame() {
@@ -196,13 +221,18 @@ class PacMan {
     handleInput(e) {
         // Only handle arrow keys that aren't being held down
         if (!e.repeat && e.key in this.arrows) {
+            // Fetch the object containing information about the input key
+            let dirObj = this.arrows[e.key];
+
             // Update UI elements to visually indicate the received direction
             this.lastArrow.classList.remove('last-arrow');
-            this.lastArrow = this.arrows[e.key].element;
+            this.lastArrow = dirObj.element;
             this.lastArrow.classList.add('last-arrow');
 
-            // Queue the received direction
-            this.player.queueDirection(this.arrows[e.key].direction);
+            // Queue the received direction if it exists
+            if (dirObj.direction != null) {
+                this.player.queueDirection(this.arrows[e.key].direction);
+            }
         }  
     }
 
@@ -312,7 +342,7 @@ class PacMan {
             }
             // If the player encounters a ghost that is neither blue nor resetting, they lose the
             // game
-            else if (!this.ghost.blue && !this.ghost.resetting) {
+            else if (!this.ghost.blue && !this.ghost.resetting && !this.demoMode) {
                 this.gameOver('lost...');
             }
         }

@@ -30,7 +30,7 @@ trials = [
 ]
 
 # Total number of calibration rounds
-num_rounds = 10
+num_rounds = 20
 # Length, in seconds, of individual trials
 trial_length = 2
 # Track completed and total trials to display progress

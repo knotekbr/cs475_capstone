@@ -20,7 +20,7 @@ def obci(sock):
     inlet = StreamInlet(stream)
 
     # List of commands corresponding to JavaScript KeyBoardEvent key values
-    commands = ['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp']
+    commands = ['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp', 'Neutral']
     # Index of previously received command
     last_command = 4
 
@@ -29,8 +29,9 @@ def obci(sock):
         sample, _ = inlet.pull_sample()
         index = max(range(len(sample)), key=sample.__getitem__)
 
-        # Only transmit the current command if it is not neutral and the previous command was neutral
-        if last_command == 4 and index < 4:
+        # Only transmit directional commands if the previous command was neutral, and only transmit
+        # neutral commands if the previous command was directional
+        if (last_command == 4 and index < 4) or (last_command < 4 and index == 4):
             sock.send(commands[index])
         
         # Store the received command for use in the next loop iteration

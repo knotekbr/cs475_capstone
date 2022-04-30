@@ -53,6 +53,9 @@ export class Ghost extends Mover {
         this.defaultX = tileX;
         this.defaultY = tileY;
 
+        // In demo mode, the ghost is drawn with transparency
+        this.demoMode = false;
+
         // References the current function being used to determine the next direction of movement.
         // Differs between default/vulnerable and reset states
         this.chooseDirection = this.defaultChooseDirection;
@@ -311,9 +314,11 @@ export class Ghost extends Mover {
             dx = this.x - this.drawOffset,
             dy = this.y - this.drawOffset;
 
+        if (this.demoMode) { ctx.globalAlpha = 0.5; }
         // Drawing call using the given context
         ctx.drawImage(this.spriteSheet, sx, sy, this.size, this.size,
                                         dx, dy, this.size, this.size);
+        if (ctx.globalAlpha < 1) { ctx.globalAlpha = 1; }
     }
 
 }
