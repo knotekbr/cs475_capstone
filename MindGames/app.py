@@ -31,7 +31,7 @@ def obci(sock):
 
         # Only transmit directional commands if the previous command was neutral, and only transmit
         # neutral commands if the previous command was directional
-        if (last_command == 4 and index < 4) or (last_command < 4 and index == 4):
+        if (index == last_command):
             sock.send(commands[index])
         
         # Store the received command for use in the next loop iteration
