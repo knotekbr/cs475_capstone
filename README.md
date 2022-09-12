@@ -1,6 +1,7 @@
 # CS475 Senior Project - MindGames
 Brandon Knotek, Walid Muhammad, and Jack Wilder
 Repository available at: https://github.com/knotekbr/cs475_capstone
+09/12/2022
 
 ## Introduction
 This repository contains the code and documentation for our senior research project, which we're calling MindGames. The goal of the project is to explore the viability of neurofeedback as a means for controlling real-time interactive experiences. Such a system would allow individuals with physical disabilities to interact with those experiences in a way that is often impossible using traditional physical control schemes.
